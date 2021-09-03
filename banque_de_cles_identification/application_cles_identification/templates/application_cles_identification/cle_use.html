@@ -1,0 +1,29 @@
+{%extends 'identification_base.html'%}
+
+{%block subtitle%}Utilisation{%endblock%}
+
+{%block content%}
+<p>{{cles_nom}}<br>
+{%for i in question%}
+    {{i.question_intitule}}<br>
+ {% endfor %} 
+
+    {%for i in reponse%}
+
+<ul>
+  {%if i.reponse_fille_id != null %}
+  <li><a href="{% url 'page_cle_utilisation' cles_id=cles.id question_id=i.reponse_fille_id  %}">{{i.reponse_intitule}}</a></li>
+  {{i.reponse_detail}}
+  {% endif %} 
+  
+  {%if i.reponse_taxon_id != null %}
+  <li><a href="{% url 'page_taxon' cles_id=cles.id taxon_id=i.reponse_taxon_id  %}">{{i.reponse_intitule}}</a></li>
+  {{i.reponse_detail}}
+  {% endif %}
+</ul> 
+	{% endfor %} 
+	
+  <a href="{% url 'page_home' %}">&#8592; Retour à l'accueil </a>
+
+</p>
+{% endblock %}

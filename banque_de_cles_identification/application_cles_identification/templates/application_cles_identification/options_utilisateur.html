@@ -1,0 +1,32 @@
+{%extends 'home_base.html'%}
+
+{%block subtitle%}Bienvenue{%endblock%}
+
+{%block content%}
+
+<p>Vous êtes connecté en tant que : {{utilisateur.utilisateur_pseudonyme}} <br>
+Vous pouvez consulter vos clés ainsi que les clés des autres utilisateurs et en créer de nouvelles !<br><br>
+
+Mes clés :
+    <ul>{% for cle in liste_cles_disponibles %}
+            <li><a href="{% url 'page_cle' cles_id=cle.id  %}">{{cle.cles_nom}}</a></li>
+        {% endfor %}
+    </ul>
+
+Mes clés privées:
+	<ul>{% for cle in liste_cles_privees %}
+            <li><a href="{% url 'page_cle' cles_id=cle.id  %}">{{cle.cles_nom}}</a></li>
+        {% endfor %}
+    </ul>
+
+Autres clés du site :
+    <ul>{% for cle in liste_cles_publiques %}
+            <li><a href="{% url 'page_cle' cles_id=cle.id  %}">{{cle.cles_nom}}</a></li>
+        {% endfor %}
+    </ul>
+
+<a href="{% url 'page_cle_create' %}">Créer une nouvelle clé</a><br><br>
+
+<a href="{% url 'page_home' %}">&#8592; Retour à l'accueil </a>
+</p>
+{%endblock%}

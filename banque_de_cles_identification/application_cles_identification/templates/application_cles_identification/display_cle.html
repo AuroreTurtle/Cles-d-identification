@@ -1,0 +1,28 @@
+{% extends 'home_base.html' %}
+
+{% block subtitle %}
+{{cles.cles_nom}}
+{% endblock %}
+
+{% block content %}
+<p>Nom: {{cles.cles_nom}}<br>
+Description: {{cles.cles_description}}<br>
+Auteur: {{cles.cles_utilisateur}}<br>
+Catégorie: 
+    {% if cles.cles_categorie == 1 %}
+        Zoologie
+    {% elif cles.cles_categorie == 2 %}
+        Botanique
+    {% elif cles.cles_categorie == 3 %}
+        Géologie
+    {% elif cles.cles_categorie == 4 %}
+        Minéralogie
+    {% else %}
+        Autre
+    {% endif %}
+<br><br>
+
+<a href="{% url 'page_cle_utilisation' cles_id=cles.id question_id=ID_question %}" >Utiliser la clé </a><br><br>
+<a href="{% url 'page_home' %}">&#8592; Retour à l'accueil </a><!--Lien vers l'accueil-->
+</p>
+{% endblock %}

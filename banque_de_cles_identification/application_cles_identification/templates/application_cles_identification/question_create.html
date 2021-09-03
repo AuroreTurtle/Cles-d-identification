@@ -1,0 +1,41 @@
+<!--pour remplir un formulaire des questions-->
+{%extends 'identification_base.html'%}
+
+{%block subtitle%}Questions{%endblock%}
+
+{%block content%}
+<h4>Veuillez renseigner les questions de votre clé. </h4>
+<p>
+<ol> Consignes :
+    <li> Le premier champ est pour indiquer que cette question appartienne à votre clé (Question ref cle).</li>
+    <li> Le deuxième champ sera l'intitulé de votre question (Question intitule). </li>
+    <li> Le troisième champ est optionnel. C'est un champs additionnel pour décrire votre question. Attention, ne le laissez pas en blanc, remplissez avec "NA" si vous ne voulez pas l'utiliser. </li>
+    <li> Choisissez la première question de la clé. </li>
+</ol>
+
+<form class="alignement" action = "{% url 'page_question_create' %}" method="POST"> <!-- method= GET ou POST-->
+    {% csrf_token %}
+    {% for hidden in question.form.hidden_fields %}
+        {{hidden}}
+    {% endfor %}
+
+    {{question_form.question_ref_cle.label_tag}}
+    {{question_form.question_ref_cle}}<br><br>
+
+    {{question_form.question_intitule.label_tag}}
+    {{question_form.question_intitule}}<br><br>
+
+    {{question_form.question_detail.label_tag}}
+    {{question_form.question_detail}}<br><br>
+
+
+    {{question_form.question_un.label_tag}}
+    {{question_form.question_un}}<br><br>
+
+    <input type="submit" value="Submit" />
+</form>
+
+<a href="{% url 'page_home' %}">&#8592; Retour à l'accueil </a>
+<a class="droite" href="{% url 'page_reponse_create' %}">Renseigner les réponses associées à cette question &#8594; </a>
+</p>
+{% endblock %}

@@ -1,0 +1,18 @@
+/* Mise en forme pour les formulaires*/
+
+body {background-color : aliceblue;} /* coulleur du fond*/
+a{color:blue; font-weight:bold;} /*couleur des liens + liens sont en gras*/
+h2 {text-align: center; font-size: 40px;} /* pour centrer le texte*/
+.flotte {float:left;} /*permet mettre le logo du site en haut à gauche au même niveau que le titre*/
+aside{
+    float: top left;
+    position: fixed;
+     margin: 0 1.5%;
+	width: 20%;
+}
+
+section{
+    float: right;
+    margin: 0 1.5%;
+	 width: 80%;
+}

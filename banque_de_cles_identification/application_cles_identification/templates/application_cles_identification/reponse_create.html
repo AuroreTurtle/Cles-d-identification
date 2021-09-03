@@ -1,0 +1,28 @@
+{%extends 'identification_base.html'%}
+
+{%block subtitle%}Réponses{%endblock%}
+
+{%block content%}
+<h4>Veuillez renseigner les réponses liées à la question précedente.</h4>
+<p>
+<ol> Consignes :
+	<li> Le premier champ est réservé à la question d'origine, la question mère (champ Reponse mère). </li>
+	<li> Le deuième champ est reservé à l'intitulé de la réponse. Vous avez un champ extra (champ 6, Reponse detail) pour détailler votre réponse. </li>
+	<li> Si votre question donne à une nouvelle question, dans le champ "Reponse fille" on indique son identifiant. </li>
+	<li> Si votre question donne un taxon (une entité terminale), attribuez une "Reponse taxon", qui correspond à l'identifiant du taxon en question. </li>
+	<li> "Reponse photo" attend une ligne de texte pour le lien de votre photo, une url. </li>
+	<li> Champ "Reponse detail" est champ pour décrire votre réponse. Remplir avec "NA" si vous ne l'utilisez pas. </li>
+	<li> Champ "Reponse end" : vous pouvez le laisser vide. </li>
+</ol>
+
+<form class="alignement" action = "{% url 'page_reponse_create' %}" method="POST"> <!-- method= GET ou POST-->
+    {% csrf_token %}
+
+    {{reponse_form.as_p}}
+
+    <input type="submit" value="Submit" />
+</form>
+
+<a href="{% url 'page_home' %}">&#8592; Retour à l'accueil </a>
+</p>
+{% endblock %}

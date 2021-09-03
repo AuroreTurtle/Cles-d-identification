@@ -1,0 +1,40 @@
+<!--pour remplir un formulaire d'un taxon-->
+{%extends 'identification_base.html'%}
+
+{%block subtitle%}Insérez votre taxon{%endblock%}
+
+{%block content%}
+<h4> Le taxon est l'item final de la clé, l'entité à identifier à travers ses caractéristiques. </h4>
+<p>
+<ol> Consignes :
+	<li>Tous les champs doivent être remplis. </li>
+	<li>Si vous n'avez pas d'informations à donner (par exemple si votre entité n'est pas un organisme vivant et donc n'a pas 
+	de nom scientifique), veuillez remplir avec un "NA". </li>
+	<li>Le champ "Taxon photo" attend une url de votre photo (chemin specifié en texte). </li>
+</ol>
+
+<form class="alignement" action="{% url 'page_taxon_create' %}" method="post">
+	{% csrf_token %}
+	{% for hidden in form.hidden_fields %}
+		{{hidden}}
+	{% endfor %}
+
+	{{taxon_form.taxon_nom.label_tag}}
+	{{taxon_form.taxon_nom}}<br><br>
+
+	{{taxon_form.taxon_description.label_tag}}
+	{{taxon_form.taxon_description}}<br><br>
+
+	{{taxon_form.taxon_nom_scientifique.label_tag}}
+	{{taxon_form.taxon_nom_scientifique}}<br><br>
+
+	{{taxon_form.taxon_photo.label_tag}}
+	{{taxon_form.taxon_photo}}<br><br>
+
+	<input type="submit" value="Submit"/>
+</form>
+
+<a href="{% url 'page_home' %}">&#8592; Retour à l'accueil </a> <!--Lien pour aller vers l'accueil-->
+<a class="droite" href="{%url 'page_question_create' %}">Lien vers la création des questions &#8594;</a> <!--Lien pour aller vers la premiere question-->
+</p>
+{% endblock %}

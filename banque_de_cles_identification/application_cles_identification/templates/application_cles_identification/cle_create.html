@@ -1,0 +1,21 @@
+<!--pour remplir un formulaire pour créer une clé-->
+{%extends 'identification_base.html'%}
+
+{%block subtitle%}Création d'une nouvelle clé{%endblock%}
+
+{%block content%}
+<h2>Veuillez renseigner les informations générales de votre clé.</h2>
+<p> Attention : vous pouvez garder votre clé en privé ou la partager avec notre communauté en cochant "clés publiques".
+
+<form class="alignement" action = "{% url 'page_cle_create' %}" method="POST"> <!-- method= GET ou POST-->
+    {% csrf_token %}
+
+    {{cles_form.as_p}} <!-- évite de préciser chaque champs comme au dessus, créer le formulaire direct -->
+	
+    <input type="submit" value="Submit" />
+</form>
+
+<a class="droite" href="{% url 'page_taxon_create' %}">Renseigner les taxons terminaux &#8594;</a>
+<a href="{% url 'page_home' %}">&#8592; Retour à l'accueil </a>
+</p>
+{% endblock %}
